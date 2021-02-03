@@ -5,7 +5,10 @@
 package servlets;
 
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.Collection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletConfig;
 import javax.servlet.ServletException;
@@ -27,7 +30,7 @@ import utilisateurs.modeles.User;
 @WebServlet(name = "ServletUsers",
      urlPatterns = {"/ServletUsers"},
      initParams = {
-         @WebInitParam(name = "ressourceDir", value = "C:\\Users\\DELL\\Dropbox\\Mon PC (WINDOWS-MTD8J6H)\\Documents\\GitHub\\jsp")
+         @WebInitParam(name = "ressourceDir", value = "F:\\jsp")
      }
 )
 public class ServletUsers extends HttpServlet {
@@ -63,7 +66,14 @@ public class ServletUsers extends HttpServlet {
                 request.setAttribute("listeDesUsers", liste);
                 forwardTo = "index.jsp?action=listerLesUtilisateurs";
                 message = "Liste des utilisateurs";
-            } else {
+            } else if (action.equals("creerUtilisateursDeTest")){
+                creerUtilisateursDeTest();
+                Collection<User> liste = Server.uh.getUsers();
+                request.setAttribute("listeDesUsers", liste);
+                forwardTo = "index.jsp?action=listerLesUtilisateurs";
+                message = "Les utilisateurs ont été affichés";
+            }
+            else {
                 forwardTo = "index.jsp?action=todo";
                 message = "La fonctionnalité pour le paramètre " + action + " est à implémenter !";
             }
@@ -74,6 +84,18 @@ public class ServletUsers extends HttpServlet {
         // Après un forward, plus rien ne peut être exécuté après !
 
     }
+    
+    private void creerUtilisateursDeTest(){
+    
+        try {
+            User user1= new User("yede","yede","yede");
+            Server.uh.addUser(user1);
+        }
+        catch (UnsupportedEncodingException ex) {
+            Logger.getLogger(ServletUsers.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    
+}
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /** 
