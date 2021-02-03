@@ -27,7 +27,7 @@ import utilisateurs.modeles.User;
 @WebServlet(name = "ServletUsers",
      urlPatterns = {"/ServletUsers"},
      initParams = {
-         @WebInitParam(name = "ressourceDir", value = "C:\Users\DELL\Dropbox\Mon PC (WINDOWS-MTD8J6H)\Documents\GitHub\jsp")
+         @WebInitParam(name = "ressourceDir", value = "C:\\Users\\DELL\\Dropbox\\Mon PC (WINDOWS-MTD8J6H)\\Documents\\GitHub\\jsp")
      }
 )
 public class ServletUsers extends HttpServlet {
