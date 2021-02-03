@@ -7,6 +7,10 @@ Dans ce TP, nous allons epérimenter JSP dans une application.
 3. Compilez puis tester
 4. Observez ce qui se passe dans le folder du projet, que remarquez-vous ? 
 --> Notez votre réponse dans le fichier README
+
+REPONSE:
+Les fonctionnalités de création, de recherche et de modification ne fonctionne pas.
+
 3. Commitez et push
 
 ## Partie 2: Implémentez les fonctionnalités manquantes
