@@ -15,6 +15,8 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>Gestionnaire d'utilisateurs</title>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        
     </head>
     <body>
         <h1>Gestionnaire d'utilisateurs</h1>
@@ -27,40 +29,48 @@
 
 
         <h2>Menu de gestion des utilisateurs</h2>
-        <ul>
-            <li><a href="ServletUsers?action=listerLesUtilisateurs">Afficher/raffraichir la liste de tous les utilisateurs</a></li>
+        
+        <ul class="navbar-nav">
+            <li class="nav-item"><a class="nav-link" href="ServletUsers?action=listerLesUtilisateurs">Afficher/raffraichir la liste de tous les utilisateurs</a></li>
             <p>
         </ul>
             <h2>Liste des fonctionnalités à implémenter dans la Servlet (note : après chaque action cette page sera
                 rappelée par la servlet avec la liste des utilisateurs raffraichie et un message de confirmation</h2>
-        <ol>
-            <li><a href="ServletUsers?action=creerUtilisateursDeTest">Créer 4 utilisateurs de test</a></li>
+        <ol class="navbar-nav">
+            <li class="nav-item dropdown"><a class="nav-link" href="ServletUsers?action=creerUtilisateursDeTest">Créer 4 utilisateurs de test</a></li>
 
-            <li>Créer un utilisateur</li>
-            <form action="ServletUsers" method="get">
-                Nom : <input type="text" name="nom"/><br>
-                Prénom : <input type="text" name="prenom"/><br>
-                Login : <input type="text" name="login"/><br>
+            <li class="nav-item">Créer un utilisateur</li>
+            <form action="ServletUsers" method="post">
+                Nom : <input type="text" name="nom" class="col-md-6"/><br>
+                Prénom : <input type="text" name="prenom" class="col-md-6"/><br>
+                Login : <input type="text" name="login" class="col-md-6"/><br>
                 <!-- Astuce pour passer des paramètres à une servlet depuis un formulaire JSP !-->
                 <input type="hidden" name="action" value="creerUnUtilisateur"/>
-                <input type="submit" value="Créer l'utilisateur" name="submit"/>
+                <input class="btn btn-primary" type="submit" value="Créer l'utilisateur" name="submit"/>
             </form>
-
-            <li>Afficher les détails d'un utilisateur</li>
+<br><br><br>
+            <li class="nav-item">Afficher les détails d'un utilisateur</li>
             <form action="ServletUsers" method="get">
-                login : <input type="text" name="login"/><br>
+                login : <input class="col-md-6" type="text" name="login"/><br>
                 <input type="hidden" name="action" value="chercherParLogin"/>
-                <input type="submit" value="Chercher" name="submit"/>
+                <input class="btn btn-primary" type="submit" value="Chercher" name="submit"/>
             </form>
 
-
-            <li>Modifier les détails d'un utilisateur :</li>
-            <form action="ServletUsers" method="get">
-                Login : <input type="text" name="login"/><br>
-                Nom : <input type="text" name="nom"/><br>
-                Prénom : <input type="text" name="prenom"/><br>
+<br><br><br>
+            <li class="nav-item">Modifier les détails d'un utilisateur :</li>
+            <form action="ServletUsers" method="post">
+                Login : <input class="col-md-6" type="text" name="login"/><br>
+                Nom : <input class="col-md-6" type="text" name="nom"/><br>
+                Prénom : <input class="col-md-6" type="text" name="prenom"/><br>
                 <input type="hidden" name="action" value="updateUtilisateur"/>
-                <input type="submit" value="Mettre à jour" name="submit"/>
+                <input class="btn btn-primary" type="submit" value="Mettre à jour" name="submit"/>
+            </form>
+            <br><br><br><br>
+            <li class="nav-item">Supprimer les détails d'un utilisateur</li>
+            <form action="ServletUsers" method="get">
+                login : <input class="col-md-6" type="text" name="login"/><br>
+                <input type="hidden" name="action" value="supprimerUtilisateur"/>
+                <input class="btn btn-primary" type="submit" value="Supprimer" name="submit"/>
             </form>
         </ol>
 
@@ -68,14 +78,14 @@
 
         <!-- Zone qui affiche les utilisateurs si le paramètre action vaut listerComptes -->
         <c:if test="${param['action'] == 'listerLesUtilisateurs'}" >
-            <h2>Liste des utilisateurs</h2>
+            <br><br><br><h2>Liste des utilisateurs</h2>
 
-            <table border="10">
+            <table class="table">
                 <!-- La ligne de titre du tableau des comptes -->
                 <tr>
-                    <td><b>Login</b></td>
-                    <td><b>Nom</b></td>
-                    <td><b>Prénom</b></td>
+                    <th scope="col"><b>Login</b></th>
+                    <th scope="col"><b>Nom</b></th>
+                    <th scope="col"><b>Prénom</b></th>
                 </tr>
 
                 <!-- Ici on affiche les lignes, une par utilisateur -->
